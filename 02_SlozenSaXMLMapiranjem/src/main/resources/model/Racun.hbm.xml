@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping 
+    package="model">
+    
+    <class name="model.Racun" table="Racun" >
+        
+        <id name="racunID" column="racunID">
+        </id> 
+        
+        <property name="datum" column="datum" type="java.util.Date"/>
+        
+        <list name="stavkeRacuna" cascade="all" lazy="false" inverse="true">
+             <key column="racunID"/>
+             <list-index column="RB" base="1"/>
+             <one-to-many class="model.StavkaRacuna"/>
+        </list>
+        
+    </class>
+    <class name="model.StavkaRacuna" table="StavkaRacuna" >
+       
+
+        <composite-id> 
+            <key-many-to-one name="racun" class="model.Racun" column="racunID" foreign-key="racunID"/>
+            <key-property name="RB" column="RB"/>
+        </composite-id>
+        
+  
+        
+        <many-to-one name="proizvod" class="model.Proizvod" column="proizvodID" lazy="false" cascade="all" />
+        <property 
+            name="kolicina" 
+            column="kolicina"
+        />
+    </class>
+</hibernate-mapping>

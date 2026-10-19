@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping 
+	package="model">
+
+	<class name="model.Proizvod" table="Proizvod" >
+            
+		<id name="proizvodID" column="proizvodID">
+                    <generator class="assigned"></generator>
+                </id>
+                
+                <property name="naziv" column="naziv"/>
+                
+                <property name="cena" column="cena" type="double"/>
+                
+                <joined-subclass name="model.PrehrambeniProizvod" table="prehrambeniproizvod">
+                      <key column="proizvodID"/>
+                      <property name="rokTrajanja"/>
+                      <property name="sastav"/>
+                </joined-subclass>
+                
+                <joined-subclass name="model.TehnickiProizvod" table="tehnickiproizvod">
+                      <key column="proizvodID"/>
+                      <property name="tehnickeOsobine"/>
+                      <property name="garancija" type="int"/>
+                      <property name="uputstvo"/>
+                </joined-subclass>
+		
+	</class>
+	
+</hibernate-mapping>

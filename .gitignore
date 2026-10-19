@@ -1,0 +1,25 @@
+# Rezultati kompajliranja
+**/target/
+*.class
+
+# Privatna podešavanja razvojnih okruženja
+**/nbproject/private/
+**/nbactions-private.xml
+**/.idea/
+*.iml
+**/.vscode/
+
+# Lokalni podaci i logovi
+*.log
+.env
+.env.*
+!.env.example
+
+# Lokalni Elasticsearch sertifikati i ključevi
+*.p12
+*.jks
+*.key
+
+# Sistemske datoteke
+Thumbs.db
+.DS_Store
